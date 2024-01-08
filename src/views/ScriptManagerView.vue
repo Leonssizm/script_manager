@@ -24,7 +24,7 @@
   <div v-if="editorIsLoaded" class="z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded p-4 shadow-md">
   <ScriptEditorHeader @closeEditor="editorIsLoaded = false" :scriptName=scriptData[0].name />
   <div class="overflow-auto">
-    <JsonEditorVue v-model="specificScriptConfig" class="w-[50rem] h-[25rem]" theme="barebones"/>
+    <JsonEditorVue v-model="specificScriptConfig" class="w-[50rem] h-[25rem]"/>
   </div>
   <div class="flex justify-between">
      <UpdateButton @click="updateScriptData"/> 
