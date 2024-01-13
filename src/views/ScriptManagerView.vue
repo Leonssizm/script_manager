@@ -16,7 +16,7 @@
         <td>{{calculateTimeDifference(scripts.lastRun) }}</td> 
         <td class="break-words">{{ scripts.description }}</td>
         <td>
-          <EditButton @click="openEditor(scripts.id)"/>
+          <EditButton @click="openEditor(scripts.id)"/> 
         </td>
       </tr>
     </tbody>
@@ -40,11 +40,11 @@ import ScriptEditorHeader from '@/components/ScriptEditorHeader.vue';
 import JsonEditorVue from 'json-editor-vue'
 import UpdateButton from '@/components/buttons/UpdateButton.vue';
 import EditButton from '@/components/buttons/EditButton.vue';
+import CancelButton from '@/components/buttons/CancelButton.vue';
 import { onMounted } from 'vue';
 import { ref } from 'vue';
 import { formatTimeDifference } from '@/helpers/formatters.js'
 import {getAllScripts, updateScript} from '@/services/api.js'
-import CancelButton from '@/components/buttons/CancelButton.vue';
 
 let scriptManager = ref(''), scriptData=ref([]), specificScriptConfig=ref([])
 let pageIsLoaded = ref(true), editorIsLoaded = ref(false)
@@ -52,6 +52,7 @@ let pageIsLoaded = ref(true), editorIsLoaded = ref(false)
 onMounted(() => {
    fetchAndUpdateScripts()
 })
+
 
 function fetchAndUpdateScripts() {
   getAllScripts().then((scripts) => {
@@ -72,7 +73,6 @@ function calculateTimeDifference(lastRun) {
       specificScriptConfig.value = scriptData.value[0].config
       editorIsLoaded.value = true
     })
-
   }
 
   function updateScriptData(){
