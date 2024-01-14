@@ -21,10 +21,11 @@
       </tr>
     </tbody>
   </v-table>
-  <div v-if="editorIsLoaded" class="z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded p-4 shadow-md">
+  <div v-if="editorIsLoaded" class="z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-neutral-400 rounded p-4 shadow-md transition-opacity animate-fade-in">
+
   <ScriptEditorHeader @closeEditor="editorIsLoaded = false" :scriptName=scriptData[0].name />
   <div class="overflow-auto">
-    <JsonEditorVue v-model="specificScriptConfig" class="w-[50rem] h-[25rem]"/>
+    <JsonEditorVue v-model="specificScriptConfig" class="w-[50rem] h-[25rem] jse-theme-dark"/>
   </div>
   <div class="flex justify-between">
      <UpdateButton @click="updateScriptData"/> 
@@ -35,6 +36,7 @@
 </template>
 
 <script setup>
+import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
 import TableHeaders from '@/components/TableHeaders.vue'
 import ScriptEditorHeader from '@/components/ScriptEditorHeader.vue';
 import JsonEditorVue from 'json-editor-vue'
@@ -85,3 +87,17 @@ function calculateTimeDifference(lastRun) {
 
   }
 </script>
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+</style>
